@@ -57,7 +57,7 @@ public class ColorDeviceDao implements DaoCrudDataTablesPattern<ColorDevice, Str
 
     @Override
     public List<ColorDevice> datatables(DataTablesRequest<ColorDevice> params) {
-        String baseQuery = "select id, name, code, description\n" +
+        String baseQuery = "select color_id, color_name, color_code, color_description\n" +
                 "from device_color\n" +
                 "where 1 = 1 ";
 
@@ -70,27 +70,27 @@ public class ColorDeviceDao implements DaoCrudDataTablesPattern<ColorDevice, Str
         switch (params.getColOrder().intValue()) {
             case 0:
                 if (StringUtils.equalsIgnoreCase(params.getColDir(), "asc"))
-                    query.append(" order by id asc ");
+                    query.append(" order by color_id asc ");
                 else
-                    query.append(" order by id desc ");
+                    query.append(" order by color_id desc ");
                 break;
             case 1:
                 if (StringUtils.equalsIgnoreCase(params.getColDir(), "asc"))
-                    query.append(" order by name asc ");
+                    query.append(" order by color_name asc ");
                 else
-                    query.append(" order by name desc ");
+                    query.append(" order by color_name desc ");
                 break;
             case 2:
                 if (StringUtils.equalsIgnoreCase(params.getColDir(), "asc"))
-                    query.append(" order by description asc ");
+                    query.append(" order by color_description asc ");
                 else
-                    query.append(" order by description desc ");
+                    query.append(" order by color_description desc ");
                 break;
             default:
                 if (StringUtils.equalsIgnoreCase(params.getColDir(), "asc"))
-                    query.append(" order by id asc ");
+                    query.append(" order by color_id asc ");
                 else
-                    query.append(" order by id desc ");
+                    query.append(" order by color_id desc ");
                 break;
         }
 
@@ -100,16 +100,16 @@ public class ColorDeviceDao implements DaoCrudDataTablesPattern<ColorDevice, Str
 
         return this.jdbcTemplate.query(query.toString(), values, (resultSet, i) ->
                 new ColorDevice(
-                        resultSet.getString("id"),
-                        resultSet.getString("name"),
-                        resultSet.getString("code"),
-                        resultSet.getString("description")
+                        resultSet.getString("color_id"),
+                        resultSet.getString("color_name"),
+                        resultSet.getString("color_code"),
+                        resultSet.getString("color_description")
                 ));
     }
 
     @Override
     public Long datatables(ColorDevice param) {
-        String baseQuery = "select count(id) as rows \n" +
+        String baseQuery = "select count(color_id) as rows \n" +
                 "from device_color\n" +
                 "where 1 = 1 ";
 
@@ -138,27 +138,27 @@ public class ColorDeviceDao implements DaoCrudDataTablesPattern<ColorDevice, Str
 
         @Override
         public StringBuilder getQuery(ColorDevice param) {
-            if (StringUtils.isNoneBlank(param.getId())) {
-                query.append(" and lower(id) like :id ");
-                parameterSource.addValue("id",
+            if (StringUtils.isNoneBlank(param.getColor_id())) {
+                query.append(" and lower(color_id) like :color_id ");
+                parameterSource.addValue("color_id",
                         new StringBuilder("%")
-                                .append(param.getId().toLowerCase())
+                                .append(param.getColor_id().toLowerCase())
                                 .append("%")
                                 .toString());
             }
 
-            if (StringUtils.isNoneBlank(param.getName())) {
-                query.append(" and lower(name) like :name ");
-                parameterSource.addValue("name", new StringBuilder("%")
-                        .append(param.getName().toLowerCase())
+            if (StringUtils.isNoneBlank(param.getColor_name())) {
+                query.append(" and lower(color_name) like :color_name ");
+                parameterSource.addValue("color_name", new StringBuilder("%")
+                        .append(param.getColor_name().toLowerCase())
                         .append("%")
                         .toString());
             }
 
-            if (StringUtils.isNoneBlank(param.getDescription())) {
-                query.append(" and lower(description) like :description ");
-                parameterSource.addValue("description", new StringBuilder("%")
-                        .append(param.getDescription().toLowerCase())
+            if (StringUtils.isNoneBlank(param.getColor_description())) {
+                query.append(" and lower(color_description) like :color_description ");
+                parameterSource.addValue("color_description", new StringBuilder("%")
+                        .append(param.getColor_description().toLowerCase())
                         .append("%")
                         .toString());
             }

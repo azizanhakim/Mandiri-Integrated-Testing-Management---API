@@ -13,9 +13,9 @@ public class ColorDeviceDTO {
     @NoArgsConstructor
     public static class ColorDeviceRequestNewDTO {
         @NotNull
-        private String name;
-        private String code;
-        private String description;
+        private String color_name;
+        private String color_code;
+        private String color_description;
     }
 
     @Data
@@ -23,11 +23,11 @@ public class ColorDeviceDTO {
     @NoArgsConstructor
     public static class ColorDeviceRequestUpdateDTO {
         @NotNull
-        private String id;
+        private String color_id;
         @NotNull
-        private String name;
-        private String code;
-        private String description;
+        private String color_name;
+        private String color_code;
+        private String color_description;
     }
 
 }

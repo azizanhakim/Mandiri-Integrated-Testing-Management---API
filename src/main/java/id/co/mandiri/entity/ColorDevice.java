@@ -18,14 +18,17 @@ public class ColorDevice {
     @Id
     @GenericGenerator(name = "uuid_gen", strategy = "uuid2")
     @GeneratedValue(generator = "uuid_gen")
-    @Column(name = "id", nullable = false, length = 64)
-    private String id;
-    @Column(name = "name", nullable = false, length = 150)
-    private String name;
-    @Column(name = "code", nullable = false, length = 50)
-    private String code;
+    @Column(name = "color_id", nullable = false, length = 64)
+    private String color_id;
+
+    @Column(name = "color_name", nullable = false, length = 150)
+    private String color_name;
+
+    @Column(name = "color_code", nullable = false, length = 50)
+    private String color_code;
+
     @Lob
     @Type(type = "text")
-    @Column(name = "description")
-    private String description;
+    @Column(name = "color_description")
+    private String color_description;
 }

@@ -6,26 +6,24 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
-public class BrandDeviceDTO {
+public class UnitDeviceDTO {
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class BrandDeviceRequestNewDTO {
+    public static class UnitDeviceRequestNewDTO {
         @NotNull
-        private String brand_name;
-        private String brand_description;
+        private String unit_name;
     }
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class BrandDeviceRequestUpdateDTO {
+    public static class UnitDeviceRequestUpdateDTO {
         @NotNull
-        private String brand_id;
+        private String unit_id;
         @NotNull
-        private String brand_name;
-        private String brand_description;
+        private String unit_name;
     }
 
 }

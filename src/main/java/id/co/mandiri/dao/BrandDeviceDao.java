@@ -57,7 +57,7 @@ public class BrandDeviceDao implements DaoCrudDataTablesPattern<BrandDevice, Str
 
     @Override
     public List<BrandDevice> datatables(DataTablesRequest<BrandDevice> params) {
-        String baseQuery = "select id, name, description\n" +
+        String baseQuery = "select brand_id, brand_name, brand_description\n" +
                 "from device_brand\n" +
                 "where 1 = 1 ";
 
@@ -70,27 +70,27 @@ public class BrandDeviceDao implements DaoCrudDataTablesPattern<BrandDevice, Str
         switch (params.getColOrder().intValue()) {
             case 0:
                 if (StringUtils.equalsIgnoreCase(params.getColDir(), "asc"))
-                    query.append(" order by id asc ");
+                    query.append(" order by brand_id asc ");
                 else
-                    query.append(" order by id desc ");
+                    query.append(" order by brand_id desc ");
                 break;
             case 1:
                 if (StringUtils.equalsIgnoreCase(params.getColDir(), "asc"))
-                    query.append(" order by name asc ");
+                    query.append(" order by brand_name asc ");
                 else
-                    query.append(" order by name desc ");
+                    query.append(" order by brand_name desc ");
                 break;
             case 2:
                 if (StringUtils.equalsIgnoreCase(params.getColDir(), "asc"))
-                    query.append(" order by description asc ");
+                    query.append(" order by brand_description asc ");
                 else
-                    query.append(" order by description desc ");
+                    query.append(" order by brand_description desc ");
                 break;
             default:
                 if (StringUtils.equalsIgnoreCase(params.getColDir(), "asc"))
-                    query.append(" order by id asc ");
+                    query.append(" order by brand_id asc ");
                 else
-                    query.append(" order by id desc ");
+                    query.append(" order by brand_id desc ");
                 break;
         }
 
@@ -100,15 +100,15 @@ public class BrandDeviceDao implements DaoCrudDataTablesPattern<BrandDevice, Str
 
         return this.jdbcTemplate.query(query.toString(), values, (resultSet, i) ->
                 new BrandDevice(
-                        resultSet.getString("id"),
-                        resultSet.getString("name"),
-                        resultSet.getString("description")
+                        resultSet.getString("brand_id"),
+                        resultSet.getString("brand_name"),
+                        resultSet.getString("brand_description")
                 ));
     }
 
     @Override
     public Long datatables(BrandDevice param) {
-        String baseQuery = "select count(id) as rows \n" +
+        String baseQuery = "select count(brand_id) as rows \n" +
                 "from device_brand\n" +
                 "where 1 = 1 ";
 
@@ -137,27 +137,27 @@ public class BrandDeviceDao implements DaoCrudDataTablesPattern<BrandDevice, Str
 
         @Override
         public StringBuilder getQuery(BrandDevice param) {
-            if (StringUtils.isNoneBlank(param.getId())) {
-                query.append(" and lower(id) like :id ");
-                parameterSource.addValue("id",
+            if (StringUtils.isNoneBlank(param.getBrand_id())) {
+                query.append(" and lower(brand_id) like :brand_id ");
+                parameterSource.addValue("brand_id",
                         new StringBuilder("%")
-                                .append(param.getId().toLowerCase())
+                                .append(param.getBrand_id().toLowerCase())
                                 .append("%")
                                 .toString());
             }
 
-            if (StringUtils.isNoneBlank(param.getName())) {
-                query.append(" and lower(name) like :name ");
-                parameterSource.addValue("name", new StringBuilder("%")
-                        .append(param.getName().toLowerCase())
+            if (StringUtils.isNoneBlank(param.getBrand_name())) {
+                query.append(" and lower(brand_name) like :brand_name ");
+                parameterSource.addValue("brand_name", new StringBuilder("%")
+                        .append(param.getBrand_name().toLowerCase())
                         .append("%")
                         .toString());
             }
 
-            if (StringUtils.isNoneBlank(param.getDescription())) {
-                query.append(" and lower(description) like :description ");
-                parameterSource.addValue("description", new StringBuilder("%")
-                        .append(param.getDescription().toLowerCase())
+            if (StringUtils.isNoneBlank(param.getBrand_description())) {
+                query.append(" and lower(brand_description) like :brand_description ");
+                parameterSource.addValue("brand_description", new StringBuilder("%")
+                        .append(param.getBrand_description().toLowerCase())
                         .append("%")
                         .toString());
             }

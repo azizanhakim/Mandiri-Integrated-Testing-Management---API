@@ -13,8 +13,8 @@ public class CategoryDeviceDTO {
     @NoArgsConstructor
     public static class CategoriDeviceRequestNewDTO {
         @NotNull
-        private String name;
-        private String description;
+        private String category_name;
+        private String category_description;
     }
 
     @Data
@@ -22,10 +22,10 @@ public class CategoryDeviceDTO {
     @NoArgsConstructor
     public static class CategoryDeviceRequestUpdateDTO {
         @NotNull
-        private String id;
+        private String category_id;
         @NotNull
-        private String name;
-        private String description;
+        private String category_name;
+        private String category_description;
     }
 
 }

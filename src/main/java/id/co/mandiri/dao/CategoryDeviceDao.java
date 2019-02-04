@@ -58,7 +58,7 @@ public class CategoryDeviceDao implements DaoCrudDataTablesPattern<CategoryDevic
 
     @Override
     public List<CategoryDevice> datatables(DataTablesRequest<CategoryDevice> params) {
-        String baseQuery = "select id, name, description\n" +
+        String baseQuery = "select category_id, category_name, category_description\n" +
                 "from device_category\n" +
                 "where 1 = 1 ";
 
@@ -71,27 +71,27 @@ public class CategoryDeviceDao implements DaoCrudDataTablesPattern<CategoryDevic
         switch (params.getColOrder().intValue()) {
             case 0:
                 if (StringUtils.equalsIgnoreCase(params.getColDir(), "asc"))
-                    query.append(" order by id asc ");
+                    query.append(" order by category_id asc ");
                 else
-                    query.append(" order by id desc ");
+                    query.append(" order by category_id desc ");
                 break;
             case 1:
                 if (StringUtils.equalsIgnoreCase(params.getColDir(), "asc"))
-                    query.append(" order by name asc ");
+                    query.append(" order by category_name asc ");
                 else
-                    query.append(" order by name desc ");
+                    query.append(" order by category_name desc ");
                 break;
             case 2:
                 if (StringUtils.equalsIgnoreCase(params.getColDir(), "asc"))
-                    query.append(" order by description asc ");
+                    query.append(" order by category_description asc ");
                 else
-                    query.append(" order by description desc ");
+                    query.append(" order by category_description desc ");
                 break;
             default:
                 if (StringUtils.equalsIgnoreCase(params.getColDir(), "asc"))
-                    query.append(" order by id asc ");
+                    query.append(" order by category_id asc ");
                 else
-                    query.append(" order by id desc ");
+                    query.append(" order by category_id desc ");
                 break;
         }
 
@@ -101,15 +101,15 @@ public class CategoryDeviceDao implements DaoCrudDataTablesPattern<CategoryDevic
 
         return this.jdbcTemplate.query(query.toString(), values, (resultSet, i) ->
                 new CategoryDevice(
-                        resultSet.getString("id"),
-                        resultSet.getString("name"),
-                        resultSet.getString("description")
+                        resultSet.getString("category_id"),
+                        resultSet.getString("category_name"),
+                        resultSet.getString("category_description")
                 ));
     }
 
     @Override
     public Long datatables(CategoryDevice param) {
-        String baseQuery = "select count(id) as rows \n" +
+        String baseQuery = "select count(category_id) as rows \n" +
                 "from device_category\n" +
                 "where 1 = 1 ";
 
@@ -138,27 +138,27 @@ public class CategoryDeviceDao implements DaoCrudDataTablesPattern<CategoryDevic
 
         @Override
         public StringBuilder getQuery(CategoryDevice param) {
-            if (StringUtils.isNoneBlank(param.getId())) {
-                query.append(" and lower(id) like :id ");
-                parameterSource.addValue("id",
+            if (StringUtils.isNoneBlank(param.getCategory_id())) {
+                query.append(" and lower(category_id) like :category_id ");
+                parameterSource.addValue("category_id",
                         new StringBuilder("%")
-                                .append(param.getId().toLowerCase())
+                                .append(param.getCategory_id().toLowerCase())
                                 .append("%")
                                 .toString());
             }
 
-            if (StringUtils.isNoneBlank(param.getName())) {
-                query.append(" and lower(name) like :name ");
-                parameterSource.addValue("name", new StringBuilder("%")
-                        .append(param.getName().toLowerCase())
+            if (StringUtils.isNoneBlank(param.getCategory_name())) {
+                query.append(" and lower(category_name) like :category_name ");
+                parameterSource.addValue("category_name", new StringBuilder("%")
+                        .append(param.getCategory_name().toLowerCase())
                         .append("%")
                         .toString());
             }
 
-            if (StringUtils.isNoneBlank(param.getDescription())) {
-                query.append(" and lower(description) like :description ");
-                parameterSource.addValue("description", new StringBuilder("%")
-                        .append(param.getDescription().toLowerCase())
+            if (StringUtils.isNoneBlank(param.getCategory_description())) {
+                query.append(" and lower(category_description) like :category_description ");
+                parameterSource.addValue("category_description", new StringBuilder("%")
+                        .append(param.getCategory_description().toLowerCase())
                         .append("%")
                         .toString());
             }
