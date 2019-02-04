@@ -61,7 +61,7 @@ public class DeviceDao implements DaoCrudDataTablesPattern<Device, String> {
 
     @Override
     public List<Device> datatables(DataTablesRequest<Device> params) {
-        String baseQuery = "select device.device_id, device.device_name, device_category.c , device_color.color_name, device_brand.brand_name, device_condition.condition_status, device_unit.unit_name, device_peminjaman.peminjaman_status FROM device,device_category, device_color, device_brand, device_condition, device_unit, device_peminjaman WHERE device.category_id = device_category.category_id AND device.color_id = device_color.color_id AND device.brand_id = device_brand.brand_id AND device.condition_id = device_condition.condition_id AND device.unit_id = device_unit.unit_id AND device.peminjaman_id = device_peminjaman.peminjaman_id";
+        String baseQuery = "select device.device_id, device.device_name, device_category.category_name , device_color.color_name, device_brand.brand_name, device_condition.condition_status, device_unit.unit_name, device_peminjaman.peminjaman_status FROM device,device_category, device_color, device_brand, device_condition, device_unit, device_peminjaman WHERE device.category_id = device_category.category_id AND device.color_id = device_color.color_id AND device.brand_id = device_brand.brand_id AND device.condition_id = device_condition.condition_id AND device.unit_id = device_unit.unit_id AND device.peminjaman_id = device_peminjaman.peminjaman_id";
 
         Device param = params.getValue();
 
